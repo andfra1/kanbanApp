@@ -1,0 +1,19 @@
+.task {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $mint;
+  user-select: none;
+}
+
+.task > * {
+  flex: 0 0 100%;
+}
+
+.task-name {
+  background-color: $teal;
+  font-size: 16px;
+  font-weight: 700;
+}
+.task_details {
+  font-size: 14px;
+}

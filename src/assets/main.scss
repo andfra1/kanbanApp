@@ -1,0 +1,13 @@
+$blue: #2E5077;
+$teal: #4DA1A9;
+$mint: #79D7BE;
+$grey: #F6F4F0;
+
+body {
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: $blue;
+}
+
+@import "globals";
+@import "components/table";
