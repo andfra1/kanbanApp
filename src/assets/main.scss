@@ -1,7 +1,4 @@
-$blue: #2E5077;
-$teal: #4DA1A9;
-$mint: #79D7BE;
-$grey: #F6F4F0;
+@import "./mixins/colors.scss";
 
 body {
     overflow: hidden;
@@ -11,3 +8,16 @@ body {
 
 @import "globals";
 @import "components/table";
+@import "components/globals/browser_scrollbar";
+
+.fr {
+    &_nav{
+
+    }
+    &_ul {
+
+    }
+    &_li {
+
+    }
+}

@@ -1,3 +1,7 @@
-*:not(select):not(option) {
-  color: $grey;
+*:is(.task-name ) {
+  color: $mint;
+}
+
+.fr_column-name > * {
+  color: $mint;
 }

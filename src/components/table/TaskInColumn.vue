@@ -22,7 +22,7 @@ import Select from "@/components/forms/Select.vue";
         K. Owalski
       </div>
       <div class="task-status">
-        <Select mode="status"/>
+        <Select mode="status" data="defaultPriorities"/>
       </div>
     </div>
   </div>
