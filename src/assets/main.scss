@@ -1,4 +1,5 @@
 @import "./mixins/colors.scss";
+@import "globals-index";
 
 body {
     overflow: hidden;
@@ -6,18 +7,4 @@ body {
     background-color: $blue;
 }
 
-@import "globals";
 @import "components/table";
-@import "components/globals/browser_scrollbar";
-
-.fr {
-    &_nav{
-
-    }
-    &_ul {
-
-    }
-    &_li {
-
-    }
-}

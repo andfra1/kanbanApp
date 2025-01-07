@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import '@/../node_modules/bootstrap/scss/bootstrap.scss';
 import '@/assets/main.scss'
 
@@ -21,12 +21,14 @@ const mainMenu = [
         logo
       </div>
       <ul class="d-flex">
-        <li v-for="item in menu">{{ item.name}}</li>
+        <li v-for="item in menu" :key="item">
+          {{ item.name}}
+        </li>
       </ul>
     </div>
     <nav class="fr_nav p-2">
       <ul class="fr_ul d-flex">
-        <li v-for="item in mainMenu" class="fr_li mx-2">
+        <li v-for="item in mainMenu" :key="item" class="fr_li mx-2">
           {{ item.name }}
         </li>
       </ul>

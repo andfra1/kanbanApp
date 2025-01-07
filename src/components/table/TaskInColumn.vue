@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Select from "@/components/forms/Select.vue";
 </script>
 
@@ -7,7 +7,9 @@ import Select from "@/components/forms/Select.vue";
     <div class="task_body">
       <div class="task_body_header">
         <div class="task-name rounded px-2 py-1">
-          <span>Task name</span>
+          <span>
+            Task name
+          </span>
         </div>
       </div>
     </div>

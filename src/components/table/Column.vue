@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import TaskInComponent from "@/components/table/TaskInColumn.vue";
 
-const props = defineProps(
+defineProps(
   [
     'item'
   ]
