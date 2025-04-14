@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import TaskInComponent from "@/components/table/TaskInColumn.vue";
+import TaskInComlumn from "@/components/table/TaskInColumn.vue";
 
-defineProps(
+const props = defineProps(
   [
     'item'
   ]
-)
+);
+
 </script>
 
 <template>
@@ -13,16 +14,21 @@ defineProps(
     <div class="fr_column_inner w-100 rounded-4">
       <div class="fr_column-name p-2 rounded-top-3">
         <span>
-          {{ item.name }}
+          {{ props.item.name }}
         </span>
+        <div class="options hidden">
+          <div>add task</div>
+          <div>other options</div>
+        </div>
       </div>
-      <div class="fr_column-content p-2">
-        <TaskInComponent
-          v-for="(task, index) in item.tasks"
-          :class="item.tasks.length-1 !== index ? 'mb-2' : ''"
+      <div class="fr_column-content p-2 rounded-3">
+        <TaskInComlumn
+          v-for="(task, index) in props.item.tasks"
+          :class="props.item.tasks.length-1 !== index ? 'mb-2' : ''"
+          :key="task"
         >
           {{ task }}
-        </TaskInComponent>
+        </TaskInComlumn>
       </div>
     </div>
   </div>

@@ -1,10 +1,6 @@
-<script setup>
-import Table from "@/components/Table.vue";
-</script>
-
 <template>
 <div class="footer">
-  Copytight all right! @2025
+  Copyright all right! @2025.01
 </div>
 </template>
 

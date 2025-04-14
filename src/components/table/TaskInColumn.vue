@@ -10,6 +10,9 @@ import Select from "@/components/forms/Select.vue";
           <span>
             Task name
           </span>
+<!--          <div>-->
+<!--            opcje-->
+<!--          </div>-->
         </div>
       </div>
     </div>
