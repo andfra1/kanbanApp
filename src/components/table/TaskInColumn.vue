@@ -3,7 +3,7 @@ import Select from "@/components/forms/Select.vue";
 </script>
 
 <template>
-  <div class="task rounded">
+  <li class="list-group-item p-2">
     <div class="task_body">
       <div class="task_body_header">
         <div class="task-name rounded px-2 py-1">
@@ -17,7 +17,7 @@ import Select from "@/components/forms/Select.vue";
       </div>
     </div>
     <div class="task_details p-2">
-      <div class="task-date-created">
+      <div class="task-date-created d-none">
         2025-01-01
       </div>
       <div class="task-priority">
@@ -26,9 +26,9 @@ import Select from "@/components/forms/Select.vue";
       <div class="task-assigment-person">
         K. Owalski
       </div>
-      <div class="task-status">
+      <div class="task-status d-none">
         <Select mode="status" data="defaultPriorities"/>
       </div>
     </div>
-  </div>
+  </li>
 </template>

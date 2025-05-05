@@ -5,8 +5,9 @@ const modal = useModal();
 </script>
 
 <template>
-  <div class="modal" style="display: block"
-       v-show="modal.settings.status"
+  <div v-show="modal.settings.status"
+       class="modal"
+       style="display: block"
   >
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -22,6 +23,11 @@ const modal = useModal();
           ></button>
         </div>
         <div class="modal-body">
+          <div v-if="modal.settings.text.length > 0"
+               class="mb-3"
+          >
+            {{ modal.settings.text }}
+          </div>
           <div class="mb-3">
             <label :for="modal.settings.input.id"
                    class="form-label"
@@ -34,8 +40,8 @@ const modal = useModal();
               <input v-model="modal.settings.input.val"
                      :placeholder="modal.settings.input.placeholder"
                      :type="modal.settings.input.type"
-                     class="form-control"
                      :id="modal.settings.input.id"
+                     class="form-control"
                      aria-describedby="basic-addon3 basic-addon4"
               >
             </div>
@@ -43,11 +49,11 @@ const modal = useModal();
         </div>
         <div class="modal-footer">
           <button v-for="button in modal.settings.buttons"
-                  :key="button"
                   @click="button.action"
+                  :key="button"
+                  :class="button.addClass"
                   type="button"
                   class="btn"
-                  :class="button.addClass"
           >
             {{button.text}}
           </button>

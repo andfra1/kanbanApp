@@ -8,10 +8,10 @@ import {useUnicodeName} from "@/stores/unicodeName.ts";
 
 const modal = useModal();
 const newColumn = useNewColumn();
-const newColumnName = ref('');
 const setUnicodeId = useUniqueId();
 const unicodeName = useUnicodeName();
 
+const newColumnName = ref('');
 const defaultColumns = ref([
   {
     name: 'to-do',
@@ -80,7 +80,7 @@ const modalDataRequest = () => {
   closeAndReset();
 }
 
-const openModal = () => {
+const modalAddNewColumn = () => {
   modal.updateSettings({
     status: true,
     title: 'Nowa kolumna',
@@ -112,8 +112,8 @@ const openModal = () => {
 <template>
   <div class="fr_table">
     <div>
-      <button @click="openModal()">
-        show Modal
+      <button @click="modalAddNewColumn()">
+        Dodaj kolejną kolumnę
       </button>
     </div>
     <div class="fr_table_title">
