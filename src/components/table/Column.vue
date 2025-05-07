@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import { ref } from "vue";
 import TaskInComlumn from "@/components/table/TaskInColumn.vue";
-import {useModal} from "@/stores/modal.ts";
-import {useUnicodeName} from "@/stores/unicodeName.ts";
-import {useUniqueId} from "@/stores/uniqueId.ts";
-import {useNewTask} from "@/stores/addNewTask.ts";
+import { useModal } from "@/stores/modal.ts";
+import { useUnicodeName } from "@/stores/unicodeName.ts";
+import { useUniqueId } from "@/stores/uniqueId.ts";
+import { useNewTask } from "@/stores/addNewTask.ts";
 
 const props = defineProps(
   [
@@ -44,7 +44,6 @@ const modalAddNewTask = () => {
   modal.updateSettings({
     status: true,
     title: 'Nowy task',
-    text: '',
     type: 'input',
     input: {
       val: newTaskName,

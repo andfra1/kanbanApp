@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import Select from "@/components/forms/Select.vue";
+import { defineStore } from 'pinia'
+import { useNewTask } from "@/stores/addNewTask.ts";
+
+const newTask = useNewTask();
 </script>
 
 <template>
@@ -8,7 +12,7 @@ import Select from "@/components/forms/Select.vue";
       <div class="task_body_header">
         <div class="task-name rounded px-2 py-1">
           <span>
-            Task name
+            {{ newTask.settings.task.name }}
           </span>
 <!--          <div>-->
 <!--            opcje-->

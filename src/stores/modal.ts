@@ -22,7 +22,7 @@ export const useModal = defineStore(
       action: null
     }
       // {
-      //   text: 'Waliduj', // OK, Akceptuj, Autoryzuj, Dopuść, Zatwierdź, Zgódź się, Poświadcz, Przyjmij, Ppoprzyj, repsektuj, Waliduj
+      //   text: 'Waliduj', // OK, Akceptuj, Autoryzuj, Dopuść, Zatwierdź, Zgódź się, Poświadcz, Przyjmij, Poprzyj, repsektuj, Waliduj
       //   addClass: 'btn-primary',
       //   action: () => {}
       // },
@@ -37,8 +37,8 @@ export const useModal = defineStore(
 
   const settings = reactive({...defaultSettings.value});
 
-  function updateSettings(newSettigns: object) {
-    return Object.assign(settings, newSettigns);
+  function updateSettings(newSettings: object) {
+    return Object.assign(settings, newSettings);
   }
 
   function resetSettings() {

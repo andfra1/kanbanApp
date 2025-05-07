@@ -2,9 +2,9 @@
 import Column from "@/components/table/Column.vue";
 import { computed, ref } from "vue";
 import { useModal } from "@/stores/modal.ts";
-import {useNewColumn} from "@/stores/addNewColumn.ts";
-import {useUniqueId} from "@/stores/uniqueId.ts";
-import {useUnicodeName} from "@/stores/unicodeName.ts";
+import { useNewColumn } from "@/stores/addNewColumn.ts";
+import { useUniqueId } from "@/stores/uniqueId.ts";
+import { useUnicodeName } from "@/stores/unicodeName.ts";
 
 const modal = useModal();
 const newColumn = useNewColumn();

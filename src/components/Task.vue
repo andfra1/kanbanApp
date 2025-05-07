@@ -1,5 +1,5 @@
 <script setup>
-const tasks = [
+const task = [
   {
     name: 'nazwa tasku',
     content: 'tresc tasku',

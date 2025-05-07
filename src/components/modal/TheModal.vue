@@ -55,7 +55,7 @@ const modal = useModal();
                   type="button"
                   class="btn"
           >
-            {{button.text}}
+            {{ button.text }}
           </button>
         </div>
       </div>
