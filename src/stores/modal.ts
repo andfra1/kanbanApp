@@ -3,24 +3,24 @@ import {defineStore} from 'pinia'
 
 export const useModal = defineStore(
   'modal', () => {
-  const defaultSettings = ref({
-    status: false,
-    title: '',
-    text: '',
-    input: {
-      val: '',
-      type: '',
-      placeholder: '',
-      name: '',
-      label: '',
-      id: ''
-    },
-    type: '',
-    buttons: [{
+    const defaultSettings = ref({
+      status: false,
+      title: '',
       text: '',
-      addClass: '',
-      action: null
-    }
+      type: '',
+      // buttons: [{
+      //   text: '',
+      //   addClass: '',
+      //   action: null
+      // }],
+      // input: {
+      //   val: '',
+      //   type: '',
+      //   placeholder: '',
+      //   name: '',
+      //   label: '',
+      //   id: ''
+      // },
       // {
       //   text: 'Waliduj', // OK, Akceptuj, Autoryzuj, Dopuść, Zatwierdź, Zgódź się, Poświadcz, Przyjmij, Poprzyj, repsektuj, Waliduj
       //   addClass: 'btn-primary',
@@ -31,20 +31,20 @@ export const useModal = defineStore(
       //   addClass: 'btn-secondary',
       //   action: () => {}
       // }
-    ],
-    data: {}
-  });
+      // ],
+      data: {}
+    });
 
-  const settings = reactive({...defaultSettings.value});
+    const settings = reactive({...defaultSettings.value});
 
-  function updateSettings(newSettings: object) {
-    return Object.assign(settings, newSettings);
-  }
+    function updateSettings(newSettings: object) {
+      return Object.assign(settings, newSettings);
+    }
 
-  function resetSettings() {
-    return Object.assign(settings, defaultSettings.value);
-  }
+    function resetSettings() {
+      return Object.assign(settings, defaultSettings.value);
+    }
 
-  return {settings, updateSettings, resetSettings}
-})
+    return {settings, updateSettings, resetSettings}
+  })
 

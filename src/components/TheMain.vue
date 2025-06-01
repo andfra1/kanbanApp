@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import Table from "@/components/Table.vue";
+import Board from "@/components/Board.vue";
 import TheFooter from "@/components/single-instance-components/TheFooter.vue";
 import TheHeader from "@/components/single-instance-components/TheHeader.vue";
 import TheModal from "@/components/modal/TheModal.vue";
-
-
 </script>
 
 <template>
+  <div class="container">
   <TheHeader/>
-  <Table/>
+  <Board/>
   <TheFooter/>
+  </div>
   <TheModal/>
 </template>

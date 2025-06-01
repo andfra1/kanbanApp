@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Column from "@/components/table/Column.vue";
+import Column from "@/components/board/Column.vue";
 import { computed, ref } from "vue";
 import { useModal } from "@/stores/modal.ts";
 import { useNewColumn } from "@/stores/addNewColumn.ts";
@@ -53,8 +53,6 @@ const userColumns = ref(
 const addNewColumn = () => {
   userColumns.value.push({
     name: newColumnName.value,
-    value: 'gggg',
-    tasks: [3,1,2]
   })
   return userColumns;
 }
@@ -84,7 +82,6 @@ const modalAddNewColumn = () => {
   modal.updateSettings({
     status: true,
     title: 'Nowa kolumna',
-    text: '',
     type: 'input',
     input: {
       val: newColumnName,
@@ -110,20 +107,24 @@ const modalAddNewColumn = () => {
 </script>
 
 <template>
-  <div class="fr_table">
-    <div>
-      <button @click="modalAddNewColumn()">
-        Dodaj kolejną kolumnę
+  <div>
+    <div class="d-flex my-3">
+      <h3>
+        Nazwa tablicy: tier 1
+      </h3>
+    <div class="ms-4">
+      <button class="btn btn-primary" @click="modalAddNewColumn()">
+        Dodaj kolejną kolumnę <i class="bi bi-plus-lg"></i>
       </button>
     </div>
-    <div class="fr_table_title">
-      Nazwa tablicy: tier 1
     </div>
-    <div class="fr_table_columns d-flex overflow-auto">
+    <div class="overflow-x-auto overflow-y-hidden" style="height: calc(100vh - 150px)">
+      <div class="row flex-nowrap h-100">
       <Column v-for="column in currentColumns"
               :item="column"
               :key="column"
       />
+      </div>
     </div>
   </div>
 </template>

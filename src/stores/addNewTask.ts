@@ -20,7 +20,6 @@ export const useNewTask = defineStore(
   })
 
     const settings = reactive({...defaultSettings.value});
-
     function updateSettings(newSettings: object) {
       return Object.assign(settings, newSettings);
     }

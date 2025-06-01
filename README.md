@@ -1,18 +1,38 @@
 # kanbanApp2
 
-This template should help get you started developing with Vue 3 in Vite.
+Projekt tablicy kanban na bazie Trello i Asana
 
-## Recommended IDE Setup
+### Co będzie miał kanbanApp?
+- Zmiana widoków: lista, tablica, oś czasuw
+- edycja nazwy kolumny na klik
+- 
+- Kolumny:
+  - dodawanie kolumny
+  - menu kontekstowe: usuń kolumnę, sortuj taski
+  - nazwa kolumny, dodawanie taska, ilość tasków, menu kontekstowe w jednym poziomie na samej górze karty (jak w Asana)
+  - w kolumnie widok taska: nazwa, priorytet, status, osoba przypisana, termin realizacji
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
+- Taski:
+  - dodawanie taska (widok): nazwa, kolumna (domyślnie ustawiona), priorytet (niski, normalny, wysoki), typ/rodzaj tasku (lista rozwijana, tworzona na bieżąco), opis (WYSYWIG), lista zadań (lista checkbox), data wykonania (od-do), załączniki, podzadania (tworzenie nowego tasku)
+  - menu kontekstowe: brak; task edytowany na poziomie podglądu (popup)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### TODO
+- Zmiana widoków: lista, tablica, oś czasu
+- drag & drop dla kolumn i tasków
+- edycja nazwy kolumny na klik
 
-## Customize configuration
+- Kolumny:
+    - ~~dodawanie kolumny~~
+    - menu kontekstowe: usuń kolumnę, sortuj taski
+    - nazwa kolumny, dodawanie taska, ilość tasków, menu kontekstowe w jednym poziomie na samej górze karty (jak w Asana)
+    - w kolumnie widok taska: nazwa, priorytet, status, osoba przypisana, termin realizacji
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+
+- Taski:
+    - dodawanie taska (widok): ~~nazwa~~, kolumna (domyślnie ustawiona), priorytet (niski, normalny, wysoki), typ/rodzaj tasku (lista rozwijana, tworzona na bieżąco), opis (WYSYWIG), lista zadań (lista checkbox), data wykonania (od-do), załączniki, podzadania (tworzenie nowego tasku)
+    - menu kontekstowe: brak; task edytowany na poziomie podglądu (popup)
+- wyłącz modal na Esc
 
 ## Project Setup
 

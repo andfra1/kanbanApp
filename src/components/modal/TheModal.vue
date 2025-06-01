@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { useModal } from "@/stores/modal.ts";
+import Task from "./type/Task.vue";
+import SimpleInput from "./type/SimpleInput.vue";
 
 const modal = useModal();
 </script>
 
 <template>
-  <div v-show="modal.settings.status"
+  <div @click="modal.stop.resetSettings"
+       :class="modal.settings.status ? 'd-block' : 'd-none'"
        class="modal"
-       style="display: block"
+       tabindex="-1"
   >
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -29,35 +32,23 @@ const modal = useModal();
             {{ modal.settings.text }}
           </div>
           <div class="mb-3">
-            <label :for="modal.settings.input.id"
-                   class="form-label"
-            >
-              {{ modal.settings.input.label }}
-            </label>
-            <div v-if="modal.settings.type && modal.settings.type === 'input'"
-                 class="input-group"
-            >
-              <input v-model="modal.settings.input.val"
-                     :placeholder="modal.settings.input.placeholder"
-                     :type="modal.settings.input.type"
-                     :id="modal.settings.input.id"
-                     class="form-control"
-                     aria-describedby="basic-addon3 basic-addon4"
-              >
-            </div>
+            <SimpleInput v-if="modal.settings.type === 'input'"></SimpleInput>
+            <Task v-else-if="modal.settings.type === 'task'"></Task>
           </div>
         </div>
+        <template v-if="modal.settings.type === 'input'">
         <div class="modal-footer">
           <button v-for="button in modal.settings.buttons"
                   @click="button.action"
                   :key="button"
                   :class="button.addClass"
-                  type="button"
                   class="btn"
+                  type="button"
           >
             {{ button.text }}
           </button>
         </div>
+        </template>
       </div>
     </div>
   </div>
