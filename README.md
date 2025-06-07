@@ -18,6 +18,7 @@ Projekt tablicy kanban na bazie Trello i Asana
   - menu kontekstowe: brak; task edytowany na poziomie podglądu (popup)
 
 ### TODO
+- wylaczenie modala po kliknieciu poza modal lub na Esc
 - Zmiana widoków: lista, tablica, oś czasu
 - drag & drop dla kolumn i tasków
 - edycja nazwy kolumny na klik

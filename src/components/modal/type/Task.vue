@@ -11,13 +11,15 @@ const modal = useModal();
       <h6>
         Task nameee
       </h6>
-      <span>uid</span>
     </div>
     <div class="card-body">
+      <label for="">status</label>
       <Select mode="status" data="defaultPriorities"/>
       <div class="card-text">
-        tresc tasku
       </div>
+      <textarea>
+        tresc tasku
+      </textarea>
       <div class="card-text task-details">
         <div>
           <label for="">
@@ -38,7 +40,7 @@ const modal = useModal();
         <div>
           <label for="">Priorytet: </label>
           <div class="task-priority">
-            normal
+            <Select mode="status" data="defaultPriorities"/>
           </div>
         </div>
         <div>

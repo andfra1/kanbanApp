@@ -15,14 +15,17 @@ const newColumnName = ref('');
 const defaultColumns = ref([
   {
     name: 'to-do',
+    unicodeName: 'to_do',
     tasks: [5, 6, 3, 1]
   },
   {
     name: 'w trakcie',
+    unicodeName: 'w_trakcie',
     tasks: [4, 0, 9,]
   },
   {
     name: 'done',
+    unicodeName: 'done',
     tasks: [2, 5, 6, 3, 1]
   }
 ])
@@ -119,7 +122,7 @@ const modalAddNewColumn = () => {
     </div>
     </div>
     <div class="overflow-x-auto overflow-y-hidden" style="height: calc(100vh - 150px)">
-      <div class="row flex-nowrap h-100">
+      <div class="row flex-nowrap h-100 pb-3">
       <Column v-for="column in currentColumns"
               :item="column"
               :key="column"

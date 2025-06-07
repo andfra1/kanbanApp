@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Board from "@/components/Board.vue";
+import TheBoard from "@/components/TheBoard.vue";
 import TheFooter from "@/components/single-instance-components/TheFooter.vue";
 import TheHeader from "@/components/single-instance-components/TheHeader.vue";
 import TheModal from "@/components/modal/TheModal.vue";
@@ -8,7 +8,7 @@ import TheModal from "@/components/modal/TheModal.vue";
 <template>
   <div class="container">
   <TheHeader/>
-  <Board/>
+  <TheBoard/>
   <TheFooter/>
   </div>
   <TheModal/>

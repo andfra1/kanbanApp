@@ -8,11 +8,12 @@ export const useModal = defineStore(
       title: '',
       text: '',
       type: '',
-      // buttons: [{
-      //   text: '',
-      //   addClass: '',
-      //   action: null
-      // }],
+      name: '',
+      buttons: [{
+        text: '',
+        addClass: '',
+        action: null
+      }],
       // input: {
       //   val: '',
       //   type: '',
@@ -32,7 +33,8 @@ export const useModal = defineStore(
       //   action: () => {}
       // }
       // ],
-      data: {}
+      data: {},
+      stop: ()=>{}
     });
 
     const settings = reactive({...defaultSettings.value});

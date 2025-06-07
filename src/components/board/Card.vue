@@ -1,34 +1,32 @@
 <script setup lang="ts">
-import Select from "@/components/forms/Select.vue";
+import SideMenu from "@/components/side-menu/SideMenu.vue";
 import {useNewTask} from "@/stores/addNewTask.ts";
 
 const newTask = useNewTask();
+
 </script>
 
 <template>
   <div class="p-2">
     <div class="card">
-      <div class="card-header d-flex align-items-center justify-content-between p-2">
-        <h6 class="card-title mb-0">
-          {{ newTask.settings.task.name }} - card
+      <div class="card-header d-flex align-items-center justify-content-between p-2 relative">
+        <h6 class="card-title fw-bold mb-0">
+          [card-title] {{ newTask.settings.name }}
         </h6>
         <div class="options d-flex align-items-center justify-content-end ms-1">
-          <button type="button"
-                  class="btn btn-outline-light ms-1 p-0">
-            <i class="bi bi-three-dots m-1"></i>
-          </button>
+          <SideMenu/>
         </div>
       </div>
       <div class="card-body">
         <div class="card-text task-details">
           <div class="task-date-created">
-            2025-01-01
+            {{ newTask.settings.dateCreated }}
           </div>
           <div class="task-priority">
-            normal
+            {{ newTask.settings.priority }}
           </div>
           <div class="task-assigment-person">
-            K. Owalski
+            {{ newTask.settings.assignedPerson }}
           </div>
         </div>
       </div>
