@@ -4,7 +4,8 @@ import Card from "@/components/board/Card.vue";
 import {useModal} from "@/stores/modal.ts";
 import {useUnicodeName} from "@/stores/unicodeName.ts";
 import {useUniqueId} from "@/stores/uniqueId.ts";
-import {useNewTask} from "@/stores/addNewTask.ts";
+import {useNewCard} from "@/stores/addNewCard.ts";
+import SideMenu from "@/components/side-menu/SideMenu.vue";
 
 const props = defineProps(
   [
@@ -15,40 +16,39 @@ const props = defineProps(
 const modal = useModal();
 const unicodeName = useUnicodeName();
 const setUnicodeId = useUniqueId();
-const newTask = useNewTask();
-
-const newTaskName = ref('');
+const newCard = useNewCard();
+const newCardName = ref('');
 const userTasks = ref(props.item.tasks);
 
 const addNewTask = () => {
   userTasks.value.push({
-    name: newTaskName.value,
-    // value: 'gggg',
-    // tasks: [3, 1, 2]
+    name: newCardName.value,
+    unicodeName: unicodeName.result,
+    uuid: newCardName.value + '_' + setUnicodeId.generate(),
   })
   return userTasks;
 }
 const modalDataRequest = () => {
   addNewTask();
-  unicodeName.typedString = newTaskName.value;
-  newTask.set.name = unicodeName.typedString;
-  newTask.set.unicodeName = unicodeName.result;
-  newTask.set.uuid = unicodeName.result + '_' + setUnicodeId.generate();
+  unicodeName.typedString = newCardName.value;
+  newCard.settings.name = unicodeName.typedString;
+  newCard.settings.unicodeName = unicodeName.result;
+  newCard.settings.uuid = unicodeName.result + '_' + setUnicodeId.generate();
   closeAndReset();
 }
 const closeAndReset = () => {
   modal.resetSettings();
-  newTaskName.value = '';
+  newCardName.value = '';
 }
 const modalAddNewTask = () => {
   modal.updateSettings({
-    status: true,
+    toggle: true,
     title: 'Nowy task',
     type: 'task',
     input: {
-      val: newTaskName,
+      val: newCardName,
       placeholder: 'np. Usunięcie kolumny "backlog"',
-      id: 'newTaskName',
+      id: 'newCardName',
       type: 'text',
       label: 'Podaj nazwę tasku',
     },
@@ -73,20 +73,17 @@ const modalAddNewTask = () => {
     <div class="card h-100">
       <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
-          <h5 class="m-0">
+          <h5 class="m-0 text-truncate">
             {{ props.item.name }}
           </h5>
           <div class="options d-flex align-items-center justify-content-end ms-1">
             <button @click="modalAddNewTask()"
                     type="button"
-                    class="btn btn-outline-light ms-1 p-0"
+                    class="btn ms-1 p-0"
             >
               <i class="bi bi-plus fs-6 m-1"></i>
             </button>
-            <button type="button"
-                    class="btn btn-outline-light ms-1 p-0">
-              <i class="bi bi-three-dots m-1"></i>
-            </button>
+              <SideMenu class="btn ms-1 p-0" />
           </div>
         </div>
       </div>

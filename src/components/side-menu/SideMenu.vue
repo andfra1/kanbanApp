@@ -30,15 +30,15 @@ const dropdownMenuToggle = () => {
     <div class="position-relative">
       <button @click="dropdownMenuToggle"
               :aria-expanded="dropdownMenuToggleState"
-              class="btn btn-outline-light p-0"
+              class="btn p-0"
               type="button"
               data-bs-toggle="dropdown"
       >
         <i class="bi bi-three-dots m-1"></i>
       </button>
-      <div class="pt-2">
+      <div>
         <ul :class="dropdownMenuToggleState ? 'show' : '' "
-            class="dropdown-menu end-0 left-auto">
+            class="dropdown-menu end-0 left-auto pt-2">
           <li v-for="item in defaultMenuItems"
               :key="item.text">
             <button
@@ -56,10 +56,6 @@ const dropdownMenuToggle = () => {
       data-bs-dismiss="dropdown"
       aria-label="Close"
       class="modal bg-white"
-      style="--bs-bg-opacity: .05;z-index:1"></div>
+      style="--bs-bg-opacity:.05;z-index:1"></div>
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>

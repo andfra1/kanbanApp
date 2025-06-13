@@ -1,8 +1,8 @@
 import { reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useNewTask = defineStore(
-  'newTask', () => {
+export const useNewCard = defineStore(
+  'newCard', () => {
     const defaultTask = ref({
         name: 'Gimme name! Gimme that fk\'n name!!',
         dateCreated: 'Set date - automatically',

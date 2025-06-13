@@ -1,39 +1,67 @@
 <script setup lang="ts">
-import {useModal} from "@/stores/modal.ts";
 import Select from "@/components/forms/Select.vue";
 
-const modal = useModal();
+const defaultSettings = {
+  toggle: false,
+  title: 'Task #666',
+  type: 'task',
+  text: 'Some text here :)',
+};
 </script>
 
 <template>
   <div>
     <div>
       <h6>
-        Task nameee
+        {{ defaultSettings.title }}
       </h6>
     </div>
     <div class="card-body">
       <label for="">status</label>
       <Select mode="status" data="defaultPriorities"/>
       <div class="card-text">
+        {{ defaultSettings.text }}
       </div>
-      <textarea>
+      <div>
+        <label for="">Opis</label>
+        <textarea id="card-description" class="form-control" rows="3">
         tresc tasku
       </textarea>
+        <button class="btn-success">Zapisz</button>
+      </div>
       <div class="card-text task-details">
         <div>
-          <label for="">
+          <div>
             Czas reslizacji
-          </label>
-          <div class="task-date-created">
-            2025-01-01
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="task-date-created">
+              <label for="task-date-start">
+                od
+              </label>
+              <input type="date" name="task-date-start" id="task-date-start">
+            </div>
+            <div class="task-date-created">
+              <label for="task-date-end">
+                do
+              </label>
+              <input type="date" name="task-date-end" id="task-date-end">
+            </div>
           </div>
         </div>
         <div>
-          <label for="">
-            Ostatnia modyfikacja
-          </label>
-          <div class="task-date-modified">
+          <div class="d-inline">
+            Ostatnia modyfikacja:
+          </div>
+          <div class="d-inline task-date-modified">
+            none
+          </div>
+        </div>
+        <div>
+          <div class="d-inline">
+            Data utworzenia:
+          </div>
+          <div class="d-inline task-date-modified">
             none
           </div>
         </div>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import Column from "@/components/board/Column.vue";
-import { computed, ref } from "vue";
-import { useModal } from "@/stores/modal.ts";
-import { useNewColumn } from "@/stores/addNewColumn.ts";
-import { useUniqueId } from "@/stores/uniqueId.ts";
-import { useUnicodeName } from "@/stores/unicodeName.ts";
+import {computed, ref} from "vue";
+import {useModal} from "@/stores/modal.ts";
+import {useNewColumn} from "@/stores/addNewColumn.ts";
+import {useUniqueId} from "@/stores/uniqueId.ts";
+import {useUnicodeName} from "@/stores/unicodeName.ts";
 
 const modal = useModal();
 const newColumn = useNewColumn();
@@ -19,36 +19,28 @@ const defaultColumns = ref([
     tasks: [5, 6, 3, 1]
   },
   {
-    name: 'w trakcie',
-    unicodeName: 'w_trakcie',
-    tasks: [4, 0, 9,]
-  },
-  {
     name: 'done',
     unicodeName: 'done',
     tasks: [2, 5, 6, 3, 1]
   }
 ])
+
+//get it from localstorage from first time
 const userColumns = ref(
   [
     {
       name: 'to-do',
-      value: 'todo',
+      unicodeName: 'todo',
       tasks: [5, 6, 3, 1]
     },
     {
-      name: 'w trakcie',
-      value: 'inprogress',
-      tasks: [4, 0, 9,]
-    },
-    {
-      name: 'w trakcie',
-      value: 'w trakcie',
+      name: 'w trakcie - nie patrz w dol',
+      unicodeName: 'w_trakcie',
       tasks: [1]
     },
     {
       name: 'done',
-      value: 'done',
+      unicodeName: 'done',
       tasks: [2, 5, 6, 3, 1]
     }
   ])
@@ -56,6 +48,8 @@ const userColumns = ref(
 const addNewColumn = () => {
   userColumns.value.push({
     name: newColumnName.value,
+    unicodeName: unicodeName.result,
+    tasks: []
   })
   return userColumns;
 }
@@ -83,15 +77,15 @@ const modalDataRequest = () => {
 
 const modalAddNewColumn = () => {
   modal.updateSettings({
-    status: true,
+    toggle: true,
     title: 'Nowa kolumna',
     type: 'input',
     input: {
       val: newColumnName,
-      placeholder: 'np. backlog',
       id: 'newColumnName',
       type: 'text',
       label: 'Podaj nazwę kolumny',
+      placeholder: 'np. backlog',
     },
     buttons: [
       {
@@ -100,9 +94,9 @@ const modalAddNewColumn = () => {
         addClass: 'btn-secondary'
       },
       {
-        text: 'Waliduj',
+        text: 'Zapisz',
         action: modalDataRequest,
-        addClass: 'btn-primary'
+        addClass: 'btn-success'
       }
     ],
   })
@@ -111,22 +105,25 @@ const modalAddNewColumn = () => {
 
 <template>
   <div>
-    <div class="d-flex my-3">
+    <div class="d-flex my-3 w-100">
       <h3>
         Nazwa tablicy: tier 1
       </h3>
-    <div class="ms-4">
-      <button class="btn btn-primary" @click="modalAddNewColumn()">
-        Dodaj kolejną kolumnę <i class="bi bi-plus-lg"></i>
-      </button>
+      <div class="ms-4">
+        <button
+          @click="modalAddNewColumn()"
+          class="btn btn-primary">
+          Dodaj kolejną kolumnę <i class="bi bi-plus-lg"></i>
+        </button>
+      </div>
     </div>
-    </div>
-    <div class="overflow-x-auto overflow-y-hidden" style="height: calc(100vh - 150px)">
+    <div class="overflow-x-auto overflow-y-hidden"
+         style="height: calc(100vh - 155px)">
       <div class="row flex-nowrap h-100 pb-3">
-      <Column v-for="column in currentColumns"
-              :item="column"
-              :key="column"
-      />
+        <Column
+          v-for="column in currentColumns"
+          :item="column"
+          :key="column.unicodeName"/>
       </div>
     </div>
   </div>

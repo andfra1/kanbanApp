@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import SideMenu from "@/components/side-menu/SideMenu.vue";
-import {useNewTask} from "@/stores/addNewTask.ts";
+import {useNewCard} from "@/stores/addNewCard.ts";
 
-const newTask = useNewTask();
+const newCard = useNewCard();
+
+newCard.settings = {
+  name: 'New Task',
+  dateCreated: new Date().toLocaleDateString(),
+  priority: 'High',
+  assignedPerson: 'John Doe'
+}
 
 </script>
 
@@ -11,7 +18,7 @@ const newTask = useNewTask();
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between p-2 relative">
         <h6 class="card-title fw-bold mb-0">
-          [card-title] {{ newTask.settings.name }}
+          {{ newCard.settings.name }}
         </h6>
         <div class="options d-flex align-items-center justify-content-end ms-1">
           <SideMenu/>
@@ -20,13 +27,13 @@ const newTask = useNewTask();
       <div class="card-body">
         <div class="card-text task-details">
           <div class="task-date-created">
-            {{ newTask.settings.dateCreated }}
+            {{ newCard.settings.dateCreated }}
           </div>
           <div class="task-priority">
-            {{ newTask.settings.priority }}
+            {{ newCard.settings.priority }}
           </div>
           <div class="task-assigment-person">
-            {{ newTask.settings.assignedPerson }}
+            {{ newCard.settings.assignedPerson }}
           </div>
         </div>
       </div>

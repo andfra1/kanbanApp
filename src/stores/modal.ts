@@ -4,37 +4,25 @@ import {defineStore} from 'pinia'
 export const useModal = defineStore(
   'modal', () => {
     const defaultSettings = ref({
-      status: false,
-      title: '',
-      text: '',
-      type: '',
+      toggle: false,
+      title: '', //string
+      text: '', //string
+      type: '', // 'info', 'warning', 'error', 'success', 'question', 'input'
       name: '',
-      buttons: [{
-        text: '',
-        addClass: '',
-        action: null
-      }],
+      buttons:null
+      // buttons: [{
+      //   text: '',
+      //   addClass: '',
+      //   action: ()=>{}
+      // }],
       // input: {
       //   val: '',
       //   type: '',
       //   placeholder: '',
       //   name: '',
       //   label: '',
-      //   id: ''
+      //   idFor: ''
       // },
-      // {
-      //   text: 'Waliduj', // OK, Akceptuj, Autoryzuj, Dopuść, Zatwierdź, Zgódź się, Poświadcz, Przyjmij, Poprzyj, repsektuj, Waliduj
-      //   addClass: 'btn-primary',
-      //   action: () => {}
-      // },
-      // {
-      //   text: 'Udaremnij', //Znieś, Przerwij, Anuluj, Zniwecz, Odwołaj
-      //   addClass: 'btn-secondary',
-      //   action: () => {}
-      // }
-      // ],
-      data: {},
-      stop: ()=>{}
     });
 
     const settings = reactive({...defaultSettings.value});

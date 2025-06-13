@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Select from "@/components/forms/Select.vue";
 import { defineStore } from 'pinia'
-import { useNewTask } from "@/stores/addNewTask.ts";
+import { useNewTask } from "@/stores/addNewCard.ts";
 
 const newTask = useNewTask();
 </script>
