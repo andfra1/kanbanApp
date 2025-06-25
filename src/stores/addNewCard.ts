@@ -1,19 +1,21 @@
-import { reactive, ref } from 'vue'
-import { defineStore } from 'pinia'
+import {reactive, ref} from 'vue'
+import {defineStore} from 'pinia'
 
 export const useNewCard = defineStore(
   'newCard', () => {
     const defaultTask = ref({
-        name: 'Gimme name! Gimme that fk\'n name!!',
-        dateCreated: 'Set date - automatically',
-        priority: 'based on array || default \'normal\'', // 'low', 'normal', 'high'
-        assignedPerson: 'Select assigned person || null',
-        status: 'based on columns names || ids',
-        unicodeName: 'n/d',
-        uuid: 'n/d',
+      name: 'Gimme name! Gimme that fk\'n name!!',
+      dateCreated: 'Set date - automatically',
+      priority: 'based on array || default \'normal\'', // 'low', 'normal', 'high'
+      assignedPerson: 'Select assigned person || null',
+      status: 'based on columns names || ids',
+      unicodeName: 'n/d',
+      uuid: 'n/d',
+      settings: {}
     });
 
     const settings = reactive({...defaultTask.value});
+
     function updateSettings(newSettings: object) {
       return Object.assign(settings, newSettings);
     }
@@ -23,4 +25,4 @@ export const useNewCard = defineStore(
     }
 
     return {settings, updateSettings, resetSettings}
-})
+  })

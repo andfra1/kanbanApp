@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Select from "@/components/forms/Select.vue";
+import {useColumn} from "@/stores/addNewColumn.ts";
 
 const defaultSettings = {
   toggle: false,
@@ -7,6 +8,8 @@ const defaultSettings = {
   type: 'task',
   text: 'Some text here :)',
 };
+
+const column = useColumn();
 </script>
 
 <template>
@@ -18,7 +21,7 @@ const defaultSettings = {
     </div>
     <div class="card-body">
       <label for="">status</label>
-      <Select mode="status" data="defaultPriorities"/>
+      <Select mode="priority" :data="column.items"/>
       <div class="card-text">
         {{ defaultSettings.text }}
       </div>
@@ -68,7 +71,7 @@ const defaultSettings = {
         <div>
           <label for="">Priorytet: </label>
           <div class="task-priority">
-            <Select mode="status" data="defaultPriorities"/>
+            <Select mode="status" :data="column.items"/>
           </div>
         </div>
         <div>

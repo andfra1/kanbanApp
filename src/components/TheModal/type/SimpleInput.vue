@@ -1,27 +1,25 @@
 <script setup lang="ts">
 import {useModal} from "@/stores/modal.ts";
-
-const modal = useModal();
-
 interface InputSettings {
   id: string;
   label: string;
   placeholder: string;
-  type: string;
   val: string;
+  name: string;
+  type: string;
 }
 
-// Initialize if not exists
-if (!modal.settings.input) {
-  // Type assertion to more specific type, not 'any'
-  (modal.settings as { input?: InputSettings }).input = {
-    id: 'simple-input',
-    label: 'Input Label',
-    placeholder: 'Enter text here',
-    type: 'text',
-    val: ''
-  };
-}
+const modal = useModal();
+const inputSettings: InputSettings = {
+  id: '_0a_rid_it',
+  label: 'Podaj nazwę kolumny',
+  placeholder: 'np. backlog',
+  type: 'input',
+  val: modal.settings.input.val,
+  name: 'sample-input-name-0'
+};
+
+modal.settings.input = inputSettings;
 </script>
 
 <template>
@@ -31,7 +29,7 @@ if (!modal.settings.input) {
     {{ (modal.settings as any).input.label }}
   </label>
   <div class="input-group">
-    <input v-model="(modal.settings as any).input.val"
+    <input v-model="modal.settings.input.val"
            :placeholder="(modal.settings as any).input.placeholder"
            :type="(modal.settings as any).input.type"
            :id="(modal.settings as any).input.id"

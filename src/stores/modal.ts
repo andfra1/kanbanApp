@@ -7,22 +7,23 @@ export const useModal = defineStore(
       toggle: false,
       title: '', //string
       text: '', //string
-      type: '', // 'info', 'warning', 'error', 'success', 'question', 'input'
+      type: '', // string: 'info', 'warning', 'error', 'success', 'question', 'input'
       name: '',
-      buttons:null
-      // buttons: [{
-      //   text: '',
-      //   addClass: '',
-      //   action: ()=>{}
-      // }],
-      // input: {
-      //   val: '',
-      //   type: '',
-      //   placeholder: '',
-      //   name: '',
-      //   label: '',
-      //   idFor: ''
-      // },
+      minNameLength: 3, // number
+      data: {},
+      buttons: [{
+        text: '',
+        addClass: '',
+        action: ()=>{}
+      }],
+      input: {
+        val: '',
+        type: '',
+        placeholder: '',
+        name: '',
+        label: '',
+        id: ''
+      },
     });
 
     const settings = reactive({...defaultSettings.value});
@@ -35,6 +36,6 @@ export const useModal = defineStore(
       return Object.assign(settings, defaultSettings.value);
     }
 
-    return {settings, updateSettings, resetSettings}
+    return {settings, updateSettings, resetSettings, defaultSettings}
   })
 

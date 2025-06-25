@@ -7,13 +7,15 @@ const modal = useModal();
 </script>
 
 <template>
-  <div :class="modal.settings.toggle ? 'd-block' : 'd-none'"
+  <div
+    @click.stop.prevent="modal.settings.toggle = false"
+    :class="modal.settings.toggle ? 'd-block' : 'd-none'"
        class="modal">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" @click.stop>
       <div class="modal-content">
         <div class="modal-header">
           <h5 v-if="modal.settings.title" class="modal-title">
-            {{ modal.settings.title ? modal.settings.title : 'Task #666'}}
+            {{ modal.settings.title ? modal.settings.title : '-default- Task #666'}}
           </h5>
           <h5 v-else-if="modal.settings.type === 'task'"></h5>
           <button
@@ -54,6 +56,6 @@ const modal = useModal();
 
 <style lang="scss" scoped>
 .modal {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 </style>

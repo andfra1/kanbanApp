@@ -2,7 +2,7 @@
 import TheBoard from "./TheBoard.vue";
 import TheFooter from "@/components/single-instance-components/TheFooter.vue";
 import TheHeader from "@/components/single-instance-components/TheHeader.vue";
-import TheModal from "@/components/modal/TheModal.vue";
+import TheModal from "@/components/TheModal/TheModal.vue";
 </script>
 
 <template>
@@ -13,3 +13,4 @@ import TheModal from "@/components/modal/TheModal.vue";
   </div>
   <TheModal/>
 </template>
+

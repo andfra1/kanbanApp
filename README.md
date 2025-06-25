@@ -18,10 +18,10 @@ Projekt tablicy kanban na bazie Trello i Asana
   - menu kontekstowe: brak; task edytowany na poziomie podglądu (popup)
 
 ### TODO
-- wylaczenie modala po kliknieciu poza modal lub na Esc
+- ~~wylaczenie modala po kliknieciu poza modal lub na Esc~~
 - Zmiana widoków: lista, tablica, oś czasu
 - drag & drop dla kolumn i tasków
-- edycja nazwy kolumny na klik
+- ~~edycja nazwy kolumny na klik~~
 
 - Kolumny:
     - ~~dodawanie kolumny~~
@@ -34,6 +34,17 @@ Projekt tablicy kanban na bazie Trello i Asana
     - dodawanie taska (widok): ~~nazwa~~, kolumna (domyślnie ustawiona), priorytet (niski, normalny, wysoki), typ/rodzaj tasku (lista rozwijana, tworzona na bieżąco), opis (WYSYWIG), lista zadań (lista checkbox), data wykonania (od-do), załączniki, podzadania (tworzenie nowego tasku)
     - menu kontekstowe: brak; task edytowany na poziomie podglądu (popup)
 - wyłącz modal na Esc
+
+### Co działa?
+- Dodawanie kolumny
+- dodawanie taska
+- modyfikacja nazwy kolumny (na dbl click)
+- obsługa modala
+- dodane sub-menu dla kolumn i tasków
+- kolumny dostępne jako status w select menu
+
+### Co NIE działa?
+- zmiana nazwy kolumny nie zmienia nazwy statusu w liscie rozwijanej
 
 ## Project Setup
 

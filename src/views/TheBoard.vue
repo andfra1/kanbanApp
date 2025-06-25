@@ -1,29 +1,15 @@
 <script setup lang="ts">
-import Column from "@/components/board/Column.vue";
-import {computed, ref} from "vue";
+import Column from "@/components/TheBoard/Column.vue";
+import {computed, onMounted, ref} from "vue";
 import {useModal} from "@/stores/modal.ts";
-import {useNewColumn} from "@/stores/addNewColumn.ts";
+import {useColumn} from "@/stores/addNewColumn.ts";
 import {useUniqueId} from "@/stores/uniqueId.ts";
 import {useUnicodeName} from "@/stores/unicodeName.ts";
 
 const modal = useModal();
-const newColumn = useNewColumn();
+const column = useColumn();
 const setUnicodeId = useUniqueId();
 const unicodeName = useUnicodeName();
-
-const newColumnName = ref('');
-const defaultColumns = ref([
-  {
-    name: 'to-do',
-    unicodeName: 'to_do',
-    tasks: [5, 6, 3, 1]
-  },
-  {
-    name: 'done',
-    unicodeName: 'done',
-    tasks: [2, 5, 6, 3, 1]
-  }
-])
 
 //get it from localstorage from first time
 const userColumns = ref(
@@ -31,47 +17,40 @@ const userColumns = ref(
     {
       name: 'to-do',
       unicodeName: 'todo',
+      uuid: 'id-32424dsfsdf3424',
       tasks: [5, 6, 3, 1]
     },
     {
-      name: 'w trakcie - nie patrz w dol',
+      name: 'w trakcie robienia tasków',
       unicodeName: 'w_trakcie',
+      uuid: 'id-32424dsfsdf3414',
       tasks: [1]
     },
     {
       name: 'done',
       unicodeName: 'done',
+      uuid: 'id-32424dsfs333f3424',
       tasks: [2, 5, 6, 3, 1]
     }
-  ])
+  ]);
 
-const addNewColumn = () => {
-  userColumns.value.push({
-    name: newColumnName.value,
-    unicodeName: unicodeName.result,
-    tasks: []
-  })
-  return userColumns;
-}
-
-// computed
-const currentColumns = computed(() => userColumns.value.length > 0
-  ? userColumns.value
-  : defaultColumns.value
-);
 
 // methods
 const closeAndReset = () => {
   modal.resetSettings();
   unicodeName.reset();
-  newColumnName.value = '';
 }
 const modalDataRequest = () => {
-  addNewColumn();
-  unicodeName.typedString = newColumnName.value;
-  newColumn.set.name = unicodeName.typedString;
-  newColumn.set.unicodeName = unicodeName.result;
-  newColumn.set.uuid = unicodeName.result + '_' + setUnicodeId.generate();
+  const temp = {
+    name: modal.settings.input.val,
+    unicodeName: unicodeName.result,
+    uuid: unicodeName.result + '_' + setUnicodeId.generate(),
+    tasks: []
+  };
+  unicodeName.typedString = temp.unicodeName;
+  column.setNew = temp;
+  column.addNewColumn(temp);
+  saveSettings();
   closeAndReset();
 }
 
@@ -81,7 +60,7 @@ const modalAddNewColumn = () => {
     title: 'Nowa kolumna',
     type: 'input',
     input: {
-      val: newColumnName,
+      val: modal.settings.input.val,
       id: 'newColumnName',
       type: 'text',
       label: 'Podaj nazwę kolumny',
@@ -101,6 +80,19 @@ const modalAddNewColumn = () => {
     ],
   })
 }
+
+const saveSettings = () => {
+  localStorage.setItem('_kanban-table-columns', JSON.stringify(column.items));
+}
+
+onMounted(() => {
+  column.setUserColumns(userColumns.value)
+  if (!localStorage.getItem('_kanban-table-columns')) {
+    localStorage.setItem('_kanban-table-columns', JSON.stringify(column.items));
+  } else {
+    column.setUserColumns(JSON.parse(localStorage.getItem('_kanban-table-columns')))
+  }
+})
 </script>
 
 <template>
@@ -121,9 +113,9 @@ const modalAddNewColumn = () => {
          style="height: calc(100vh - 155px)">
       <div class="row flex-nowrap h-100 pb-3">
         <Column
-          v-for="column in currentColumns"
+          v-for="column in column.items"
           :item="column"
-          :key="column.unicodeName"/>
+          :key="column.uuid"/>
       </div>
     </div>
   </div>

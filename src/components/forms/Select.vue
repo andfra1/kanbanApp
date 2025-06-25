@@ -1,8 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import {computed, ref} from "vue";
 
 const props = defineProps([
   'mode',
+  'data' || [],
+  'data-value' || ['value'],
+  'data-key' || ['uuid']
 ])
 const hasData = ref(true);
 const priority = [
@@ -46,9 +49,9 @@ const status = [
 const setData = computed(() => {
   switch (props.mode) {
     case 'priority':
-      return priority
+      return props.data
     case 'status':
-      return status
+      return props.data
     default:
       noData.value = false
       return []
@@ -61,14 +64,17 @@ const selectedOption = function (obj) {
 </script>
 
 <template v-if="hasData">
-  <select name="taskPriority" id="taskPriority" class="form-select">
+  <select
+    name="taskPriority"
+    id="taskPriority"
+    class="form-select">
     <option
       @click="selectedOption(p)"
       v-for="p in setData"
-      :value="p.value"
-      :key="p"
+      :value="p.name"
+      :key="p.uuid"
     >
-      {{ p.text }}
+      {{ p.name }}
     </option>
   </select>
 </template>

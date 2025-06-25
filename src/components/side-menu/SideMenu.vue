@@ -28,13 +28,13 @@ const dropdownMenuToggle = () => {
 <template>
   <div class="dropdown">
     <div class="position-relative">
-      <button @click="dropdownMenuToggle"
+      <button @click.prevent="dropdownMenuToggle"
               :aria-expanded="dropdownMenuToggleState"
-              class="btn p-0"
+              class="btn p-0 fr_corner-border position-relative border border-1"
               type="button"
               data-bs-toggle="dropdown"
       >
-        <i class="bi bi-three-dots m-1"></i>
+        <i class="bi bi-three-dots-vertical m-1"></i>
       </button>
       <div>
         <ul :class="dropdownMenuToggleState ? 'show' : '' "
@@ -42,7 +42,7 @@ const dropdownMenuToggle = () => {
           <li v-for="item in defaultMenuItems"
               :key="item.text">
             <button
-              @click="item.action()"
+              @click.prevent="item.action()"
               class="dropdown-item text-nowrap">
               {{ item.text }}
             </button>
