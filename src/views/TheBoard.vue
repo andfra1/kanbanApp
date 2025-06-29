@@ -41,15 +41,15 @@ const closeAndReset = () => {
   unicodeName.reset();
 }
 const modalDataRequest = () => {
-  const temp = {
+  const newColumnData = {
     name: modal.settings.input.val,
     unicodeName: unicodeName.result,
     uuid: unicodeName.result + '_' + setUnicodeId.generate(),
     tasks: []
   };
-  unicodeName.typedString = temp.unicodeName;
-  column.setNew = temp;
-  column.addNewColumn(temp);
+  unicodeName.typedString = newColumnData.unicodeName;
+  column.setNew = newColumnData;
+  column.addNewColumn(newColumnData);
   saveSettings();
   closeAndReset();
 }
@@ -68,12 +68,12 @@ const modalAddNewColumn = () => {
     },
     buttons: [
       {
-        text: 'Udaremnij',
+        text: 'Zamknij, zapomnij',
         action: closeAndReset,
         addClass: 'btn-secondary'
       },
       {
-        text: 'Zapisz',
+        text: 'Tak, zapisz',
         action: modalDataRequest,
         addClass: 'btn-success'
       }
@@ -88,7 +88,7 @@ const saveSettings = () => {
 onMounted(() => {
   column.setUserColumns(userColumns.value)
   if (!localStorage.getItem('_kanban-table-columns')) {
-    localStorage.setItem('_kanban-table-columns', JSON.stringify(column.items));
+    saveSettings();
   } else {
     column.setUserColumns(JSON.parse(localStorage.getItem('_kanban-table-columns')))
   }
@@ -111,7 +111,7 @@ onMounted(() => {
     </div>
     <div class="overflow-x-auto overflow-y-hidden"
          style="height: calc(100vh - 155px)">
-      <div class="row flex-nowrap h-100 pb-3">
+      <div class="row flex-nowrap h-100 w-100 pb-3">
         <Column
           v-for="column in column.items"
           :item="column"

@@ -1,4 +1,4 @@
-import {computed, reactive, ref} from 'vue'
+import {reactive, ref} from 'vue'
 import {defineStore} from 'pinia'
 
 export const useColumn = defineStore(
@@ -9,6 +9,7 @@ export const useColumn = defineStore(
       uuid: '',
       tasks: []
     })
+
     const items = reactive([{...setNew.value}]);
 
     function setUserColumns(userColumns: object) {
@@ -19,5 +20,19 @@ export const useColumn = defineStore(
       return items.push(setNew.value)
     }
 
-    return {setNew, items, setUserColumns, addNewColumn}
+    function rename(columnUuid: string, newName: string) {
+      const column = items.find(item => item.uuid === columnUuid);
+      if (column) {
+        column.name = newName;
+      }
+      return column;
+    }
+
+    function removeColumn(columnUuid: string) {
+      return items.splice(
+        items.findIndex((item) => item.uuid === columnUuid), 1
+      );
+    }
+
+    return {setNew, items, setUserColumns, addNewColumn, removeColumn, rename}
   })

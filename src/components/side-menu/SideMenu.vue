@@ -1,25 +1,23 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {computed, ref} from "vue";
+
+const props = defineProps([
+  'menuItems'
+]);
 
 const dropdownMenuToggleState = ref(false);
-const defaultMenuItems = [
+const defaultMenuItems = ref([
   {
-    text: 'There\'s',
-    action: () => console.log('Default option #1')
+    text: '(empty)',
+    action: () => console.log('Default option #1'),
+    icon: 'bi bi-check2-square'
   },
-  {
-    text: 'no',
-    action: () => console.log('Default option #2')
-  },
-  {
-    text: 'data',
-    action: () => console.log('Default option #3')
-  },
-  {
-    text: 'here :(',
-    action: () => console.log('Default option #4')
-  }
-];
+]);
+
+const currentItems = computed(() => {
+  return props.menuItems || defaultMenuItems.value;
+})
+
 const dropdownMenuToggle = () => {
   dropdownMenuToggleState.value = !dropdownMenuToggleState.value;
 };
@@ -28,21 +26,21 @@ const dropdownMenuToggle = () => {
 <template>
   <div class="dropdown">
     <div class="position-relative">
-      <button @click.prevent="dropdownMenuToggle"
-              :aria-expanded="dropdownMenuToggleState"
-              class="btn p-0 fr_corner-border position-relative border border-1"
-              type="button"
-              data-bs-toggle="dropdown"
-      >
+      <button
+        @click.prevent="dropdownMenuToggle"
+        :aria-expanded="dropdownMenuToggleState"
+        class="btn p-0 fr_corner-border position-relative border border-1"
+        type="button"
+        data-bs-toggle="dropdown">
         <i class="bi bi-three-dots-vertical m-1"></i>
       </button>
       <div>
         <ul :class="dropdownMenuToggleState ? 'show' : '' "
             class="dropdown-menu end-0 left-auto pt-2">
-          <li v-for="item in defaultMenuItems"
+          <li v-for="item in currentItems"
               :key="item.text">
             <button
-              @click.prevent="item.action()"
+              @click.prevent="item.action();dropdownMenuToggle()"
               class="dropdown-item text-nowrap">
               {{ item.text }}
             </button>

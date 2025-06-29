@@ -3,6 +3,10 @@ import SideMenu from "@/components/side-menu/SideMenu.vue";
 import {useNewCard} from "@/stores/addNewCard.ts";
 import {useModal} from "@/stores/modal.ts";
 
+const props = defineProps(
+  ['index', 'tasksLength']
+);
+
 const newCard = useNewCard();
 const modal = useModal();
 
@@ -17,8 +21,7 @@ const closeAndReset = () => {
   modal.resetSettings();
 }
 
-const modalEditTask = (card) => {
-  console.log(card)
+const modalEditTask = () => {
   modal.updateSettings({
     toggle: true,
     title: 'Edycja taska',
@@ -31,8 +34,7 @@ const modalEditTask = (card) => {
       },
       {
         text: 'Waliduj',
-        action: () => {
-        },
+        action: () => {},
         addClass: 'btn-primary'
       }
     ],
@@ -41,7 +43,9 @@ const modalEditTask = (card) => {
 </script>
 
 <template>
-  <div class="p-2">
+  <div
+    :class="props.index === 0 ? 'pt-0' : props.index === props.tasksLength-1 ? 'pb-0' : ''"
+    class="py-1">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between p-2 relative">
         <h6 class="card-title fw-bold mb-0 text-truncate">
@@ -52,7 +56,9 @@ const modalEditTask = (card) => {
         </div>
       </div>
       <div class="card-body">
-        <div class="card-text task-details" @dblclick="modalEditTask(task)">
+        <div
+          @dblclick="modalEditTask(task)"
+          class="card-text task-details">
           <div class="task-date-created">
             {{ newCard.settings.dateCreated }}
           </div>

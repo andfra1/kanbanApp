@@ -9,7 +9,6 @@ export const useModal = defineStore(
       text: '', //string
       type: '', // string: 'info', 'warning', 'error', 'success', 'question', 'input'
       name: '',
-      minNameLength: 3, // number
       data: {},
       buttons: [{
         text: '',
